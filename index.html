@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Pokemon comparison</title>
+</head>
+<body>
+ <header>
+   <h1>Pokemon comparison</h1>
+ </header>
+ <main>
+   <p>Write down the name of some pokemons you want to compare</p>
+   <div class="input">
+     <div class="name">
+       <label for="pokemon1">Title</label>
+       <input type="text" name="pokemon1" id="pokemon1" placeholder="Pikachu" autocomplete="on" required> 
+     </div>
+     <div class="name">
+       <label for="pokemon2">Title</label>
+       <input type="text" name="pokemon2" id="pokemon2" placeholder="Bulbasaur" autocomplete="on" required> 
+     </div>
+     <button id="action">Compare Pokemon</button>
+   </div>
+   <div class="cardHolder">
+     <div class="card">
+       <p class="health" id="h1"></p>
+       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" id="im1" alt="pokemon image">
+       <div class="measure" id="m1"></div>
+       <div class="abilities">
+         <ul id="a1">
+         </ul>
+       </div>
+       <div class="stats">
+         <ul id="s1">
+         </ul>
+       </div>
+     </div>
+     <div class="card">
+       <p class="health" id="h2"></p>
+       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" id="im2" alt="pokemon image">
+       <div class="measure" id="m2"></div>
+       <div class="abilities">
+         <ul id="a2">
+         </ul>
+       </div>
+       <div class="stats">
+         <ul id="s2">
+         </ul>
+       </div>
+     </div>
+     </div>
+   </div>
+ </main>
+ <script type="module" src="index.js"></script>
+</body>
+</html>
