@@ -1,17 +1,32 @@
-//DOM elements
-const healthOne = document.getElementById('h1');
-const healthTwo = document.getElementById('h2');
-const imgOne = document.getElementById('im1');
-const imgTwo = document.getElementById('im2');
-const measurementsOne = document.getElementById('m1');
-const measurementsTwo = document.getElementById('m2');
-const abilitiesOne = document.getElementById('a1');
-const abilitiesTwo = document.getElementById('a2');
-const statsOne = document.getElementById('s1');
-const statsTwo = document.getElementById('s2');
-const button = document.getElementById('action');
+const isNode = typeof module !== 'undefined' && typeof module.exports !== 'undefined';
 
-//Function to update card with pokemon data
+let documentElements;
+
+if (!isNode) {
+  // DOM elements
+  documentElements = {
+    healthOne: document.getElementById('h1'),
+    healthTwo: document.getElementById('h2'),
+    imgOne: document.getElementById('im1'),
+    imgTwo: document.getElementById('im2'),
+    measurementsOne: document.getElementById('m1'),
+    measurementsTwo: document.getElementById('m2'),
+    abilitiesOne: document.getElementById('a1'),
+    abilitiesTwo: document.getElementById('a2'),
+    statsOne: document.getElementById('s1'),
+    statsTwo: document.getElementById('s2'),
+    button: document.getElementById('action'),
+  };
+
+  // Event listeners
+  documentElements.button.addEventListener('click', comparePokemon);
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCard('pikachu', documentElements.healthOne, documentElements.imgOne, documentElements.measurementsOne, documentElements.abilitiesOne, documentElements.statsOne);
+    updateCard('bulbasaur', documentElements.healthTwo, documentElements.imgTwo, documentElements.measurementsTwo, documentElements.abilitiesTwo, documentElements.statsTwo);
+  });
+}
+
+// Function to update card with pokemon data
 async function updateCard(pokemon, healthEl, imgEl, measurementsEl, abilitiesEl, statsEl) {
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
@@ -28,7 +43,6 @@ async function updateCard(pokemon, healthEl, imgEl, measurementsEl, abilitiesEl,
     imgEl.src = data.sprites.front_default;
     measurementsEl.innerText = `height: ${data.height}ft, weight: ${data.weight}lbs`;
 
-    // Clear previous abilities and stats
     abilitiesEl.innerHTML = '';
     statsEl.innerHTML = '';
 
@@ -54,18 +68,17 @@ async function updateCard(pokemon, healthEl, imgEl, measurementsEl, abilitiesEl,
   }
 }
 
-// Function to compare Pokemon
 function comparePokemon() {
   const pokemon1 = document.getElementById('pokemon1').value.toLowerCase();
   const pokemon2 = document.getElementById('pokemon2').value.toLowerCase();
 
-  updateCard(pokemon1, healthOne, imgOne, measurementsOne, abilitiesOne, statsOne);
-  updateCard(pokemon2, healthTwo, imgTwo, measurementsTwo, abilitiesTwo, statsTwo);
+  updateCard(pokemon1, documentElements.healthOne, documentElements.imgOne, documentElements.measurementsOne, documentElements.abilitiesOne, documentElements.statsOne);
+  updateCard(pokemon2, documentElements.healthTwo, documentElements.imgTwo, documentElements.measurementsTwo, documentElements.abilitiesTwo, documentElements.statsTwo);
 }
 
-// Event listeners
-button.addEventListener('click', comparePokemon);
-document.addEventListener('DOMContentLoaded', () => {
-  updateCard('pikachu', healthOne, imgOne, measurementsOne, abilitiesOne, statsOne);
-  updateCard('bulbasaur', healthTwo, imgTwo, measurementsTwo, abilitiesTwo, statsTwo);
-});
+// Export for Node.js
+if (isNode) {
+  module.exports = {
+    updateCard
+  };
+}

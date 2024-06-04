@@ -1,0 +1,20 @@
+{
+  "name": "pokemoncards",
+  "version": "1.0.0",
+  "description": "Hi! This is a project for me to start learning about APIS and testing. The purpose is to fetch data from an API based on a client request and then test if the functions work based on testing with the mocha framework in javascript.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha ./test/index_test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.4.0"
+  },
+  "dependencies": {
+    "jsdom": "^24.1.0"
+  }
+}
